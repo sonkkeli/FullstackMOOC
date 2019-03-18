@@ -1,0 +1,8 @@
+title Muistiinpanon lisääminen -heroku single page app
+
+selain->palvelin: HTTP PUSH https://fullstack-exampleapp.herokuapp.com/new_note_spa
+palvelin->selain: {"message":"note created"}
+
+note over selain:
+muistiinpano tallentuu ja renderöityy näytölle
+end note
