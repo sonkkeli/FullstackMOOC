@@ -4,8 +4,8 @@ Exercises of https://fullstackopen-2019.github.io/
 # Folder structure:    
 fs_viikko1 (=part 0)    
 part 1    
-    kurssitiedot    
-    unicafe     
+    - kurssitiedot    
+    - unicafe     
 part 2    
 part 3    
 part 4    
