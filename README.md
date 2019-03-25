@@ -8,7 +8,8 @@ part 1
     - unicafe     
     - anekdootit    
 part 2    
-    - kurssitiedot     
+    - kurssitiedot    
+    - puhelinluettelo    
 part 3    
 part 4    
 part 5    
