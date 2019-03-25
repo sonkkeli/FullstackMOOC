@@ -21,9 +21,7 @@ part 8
 Luodaan sovellus nimeltään [nimi] ja mennään sovelluksen 
 sisältämään hakemistoon:
 
-$ npx create-react-app osa1
-$ cd osa1
-
-Sovellus käynnistetään seuraavasti
-
+$ npx create-react-app osa1     
+$ cd osa1    
+Sovellus käynnistetään seuraavasti    
 $ npm start
