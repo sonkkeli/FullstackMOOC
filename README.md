@@ -8,9 +8,21 @@ part 1
     - unicafe     
     - anekdootit    
 part 2    
+    - kurssitiedot
 part 3    
 part 4    
 part 5    
 part 6    
 part 7    
 part 8    
+
+# Uuden react-apin luominen 
+Luodaan sovellus nimeltään [nimi] ja mennään sovelluksen 
+sisältämään hakemistoon:
+
+$ npx create-react-app osa1
+$ cd osa1
+
+Sovellus käynnistetään seuraavasti
+
+$ npm start
