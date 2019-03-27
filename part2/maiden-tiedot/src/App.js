@@ -28,12 +28,12 @@ const App = () => {
     }
 
     return (
-        <div>
-            <form>
-                find countries: <input value={findCountry} onChange={handleFinderChange}/>
+        <div class="container" class="text-center">
+            <form  >
+                <p class="display-4">Find countries:</p>
+                <input value={findCountry} onChange={handleFinderChange}/>
             </form>
-            <CountryList countries={countries} findCountry={findCountry} handleButtonClick={handleButtonClick}/>
-            
+            <CountryList countries={countries} findCountry={findCountry} handleButtonClick={handleButtonClick}/> 
         </div>
     )
 }

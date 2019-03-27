@@ -9,19 +9,18 @@ const CountryList = ({countries, findCountry, handleButtonClick}) => {
     
     if (matchingCountriesList.length === 1){
         return (
-            <div>
-                <h2>{matchingCountriesList[0].name}</h2>
+            <div class="jumbotron">
+                <h1 class="display-3">{matchingCountriesList[0].name}</h1>
                 <p>capital {matchingCountriesList[0].capital}</p>
                 <p>population {matchingCountriesList[0].population}</p>
-                <h3>languages </h3>
-                <ul>
-                    {matchingCountriesList[0]
+                <h3 class="display-4">languages </h3>
+                {matchingCountriesList[0]
                     .languages
                     .map(
                         language => 
-                        <li key={language.name}>{language.name}</li>
+                        <p key={language.name}>{language.name}</p>
                     )}
-                </ul>
+                
                 <img src={matchingCountriesList[0].flag} alt="flag" style={{width: 200}}/>
                 <Weather capital={matchingCountriesList[0].capital}/>
             </div>                
