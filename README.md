@@ -10,6 +10,7 @@ part 1
 part 2    
     - kurssitiedot    
     - puhelinluettelo    
+    - maiden tiedot    
 part 3    
 part 4    
 part 5    
