@@ -22,7 +22,7 @@ const App = () => {
         event.preventDefault()
 
         // jos on jo, niin update
-        if (persons.map(person => person.name.toLowerCase()).includes(newName)){
+        if (persons.map(person => person.name.toLowerCase()).includes(newName.toLowerCase())){
             if (window.confirm(`${newName} on jo luettelossa, tallennetaanko uudeksi numeroksi ${newNumber}?`)){
                 const person = persons.find(p => p.name === newName)
                 const changedPerson = {...person, number: newNumber }
