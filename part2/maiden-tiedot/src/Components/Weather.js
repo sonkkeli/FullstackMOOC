@@ -26,8 +26,8 @@ const Weather = ({capital}) => {
             )
         } else {
             return (
-                <div class="spinner-border" role="status">
-                    <span class="sr-only">Loading...</span>
+                <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
                     {/* <img src='https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif' alt="loading..." style={{width:100}}/> */}
                 </div>
             )
@@ -36,7 +36,7 @@ const Weather = ({capital}) => {
 
     return (
         <div>
-            <h3 class="display-4">weather in {capital}</h3>
+            <h3 className="display-4">weather in {capital}</h3>
             {showWeather()}
         </div>
     )

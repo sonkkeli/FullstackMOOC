@@ -28,13 +28,13 @@ const App = () => {
     }
 
     return (
-        <div class="container" class="text-center">
+        <div className="container"><div className="text-center">
             <form  >
-                <p class="display-4">Find countries:</p>
+                <p className="display-4">Find countries:</p>
                 <input value={findCountry} onChange={handleFinderChange}/>
             </form>
             <CountryList countries={countries} findCountry={findCountry} handleButtonClick={handleButtonClick}/> 
-        </div>
+        </div></div>
     )
 }
 
