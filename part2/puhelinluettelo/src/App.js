@@ -76,23 +76,22 @@ const App = () => {
     }
 
     const handleButtonClick = (id, name) => {
+        const success = false
         if (window.confirm(`Poistetaanko ${name}`)){
-            personService.deletePerson(id)
- 
+            personService
+                .deletePerson(id)
+            personService
+                .getAll()
+                .then(tempPersons => {
+                    setPersons(tempPersons.filter(person => person.id !== id))
+                    setErrorMessage(`Poistaminen onnistui`)
+                    setTimeout(() => {setErrorMessage(null)}, 3000)
+                })
+                .catch(error => {
+                    setErrorMessage(`virhe: henkilön poistaminen epäonnistui`)
+                    setTimeout(() => {setErrorMessage(null)}, 3000)
+                })
         }
-        // jotta päivittyy heti, eikä vasta F5 jälkeen, niin filteröidään se pois
-        personService
-        .getAll()
-        .then(tempPersons => {
-            setPersons(tempPersons.filter(person => person.id !== id))
-            setErrorMessage(`Poistaminen onnistui`)
-            setTimeout(() => {setErrorMessage(null)}, 3000)
-        })
-        .catch(error => {
-            setErrorMessage(`virhe: henkilön poistaminen epäonnistui`)
-            setTimeout(() => {setErrorMessage(null)}, 3000)
-        })
-        
     }
 
     const handleFinderChange = (event) => {
