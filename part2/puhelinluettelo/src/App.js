@@ -3,18 +3,24 @@ import Filter from './Component/Filter'
 import personService from './Services/persons'
 import PersonList from './Component/PersonList'
 import PersonForm from './Component/PersonForm'
+import Notification from './Component/Notification'
 
 const App = () => {
     const [ persons, setPersons] = useState([]) 
     const [ newName, setNewName ] = useState('')
     const [ newNumber, setNewNumber] = useState('')
     const [ whoIsMissing, setWhoIsMissing] = useState('')
+    const [ errorMessage, setErrorMessage ] = useState(null)
 
     useEffect(() => {
         personService
         .getAll()
         .then(initialPersons => {
             setPersons(initialPersons)
+        })
+        .catch(error => {
+            setErrorMessage(`virhe: alkutietojen lataaminen epäonnistui`)
+            setTimeout(() => {setErrorMessage(null)}, 3000)
         })
     }, [])
 
@@ -29,8 +35,14 @@ const App = () => {
                 personService
                 .update(person.id, changedPerson)
                 .then(returnedPerson => {
-                    setPersons(persons.map(person => person.name !== newName ? person : returnedPerson)
-                )})
+                    setPersons(persons.map(person => person.name !== newName ? person : returnedPerson))
+                    setErrorMessage(`Numeron päivittäminen onnistui`)
+                    setTimeout(() => {setErrorMessage(null)}, 3000)
+                })
+                .catch(error => {
+                    setErrorMessage(`virhe: tietojen päivittäminen epäonnistui`)
+                    setTimeout(() => {setErrorMessage(null)}, 3000)
+                })
             }
         // jos ei, niin lisätään
         } else {
@@ -42,6 +54,12 @@ const App = () => {
             .create(personObject)
             .then(returnedPerson => {
                 setPersons(persons.concat(returnedPerson))
+                setErrorMessage(`Lisäys onnistui`)
+                setTimeout(() => {setErrorMessage(null)}, 3000)
+            })
+            .catch(error => {
+                setErrorMessage(`virhe: henkilön lisääminen epäonnistui`)
+                setTimeout(() => {setErrorMessage(null)}, 3000)
             })
         }
         // molemmissa tapauksissa tyhjennetään tekstikentät   
@@ -60,13 +78,21 @@ const App = () => {
     const handleButtonClick = (id, name) => {
         if (window.confirm(`Poistetaanko ${name}`)){
             personService.deletePerson(id)
+ 
         }
         // jotta päivittyy heti, eikä vasta F5 jälkeen, niin filteröidään se pois
         personService
         .getAll()
         .then(tempPersons => {
             setPersons(tempPersons.filter(person => person.id !== id))
+            setErrorMessage(`Poistaminen onnistui`)
+            setTimeout(() => {setErrorMessage(null)}, 3000)
         })
+        .catch(error => {
+            setErrorMessage(`virhe: henkilön poistaminen epäonnistui`)
+            setTimeout(() => {setErrorMessage(null)}, 3000)
+        })
+        
     }
 
     const handleFinderChange = (event) => {
@@ -81,7 +107,10 @@ const App = () => {
 
     return (
         <div className="container"><div className="text-center">
-            <h2 className="display-3">Puhelinluettelo</h2>            
+
+            <h2 className="display-3">Puhelinluettelo</h2>      
+            <Notification message={errorMessage}/>
+
             <Filter value={whoIsMissing} onChange={handleFinderChange}/>
 
             <h3 className="display-4">lisää uusi</h3>

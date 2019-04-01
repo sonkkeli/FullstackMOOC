@@ -9,8 +9,7 @@ const PersonList = ({persons, whoIsMissing, handleButtonClick}) => {
         return missings.map(
             person => 
             <p key={person.id}>
-                {person.name} {person.number} 
-                <button 
+                {person.name} {person.number} <button 
                 className="btn btn-dark btn-sm" 
                 onClick={() => handleButtonClick(person.id, person.name)}
                 >poista</button>
