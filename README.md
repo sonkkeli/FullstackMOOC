@@ -12,6 +12,7 @@ part 2
     - puhelinluettelo    
     - maiden tiedot    
 part 3    
+    - puhelinluettelo (fullstack)     
 part 4    
 part 5    
 part 6    
