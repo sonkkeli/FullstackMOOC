@@ -21,7 +21,7 @@ app.use(express.static('build'))
 
 app.use(bodyParser.json())
 
-// tehtävä 3.7 ja 3.8*
+// MORGANIN KONFIGUROINTI
 // app.use(morgan('tiny'))
 app.use(morgan((tokens, req, res) => {
     morgan.token('data', ((req, res) => { return JSON.stringify(req.body) }))
@@ -66,7 +66,7 @@ app.get('/api/info', (req, res) => {
     })
 })
 
-// 3.18 YKSITTÄISEN HENKILÖN NÄYTTÄMINEN, testaa esim id:llä 5cacdefe5f34dc49bc21910f
+// YKSITTÄISEN HENKILÖN NÄYTTÄMINEN, testaa esim id:llä 5cacdefe5f34dc49bc21910f
 app.get('/api/persons/:id', (req, res, next) => {
     Person.findById(req.params.id)
     .then(person => {
@@ -81,7 +81,7 @@ app.get('/api/persons/:id', (req, res, next) => {
 })
 
 // POISTAMINEN
-app.delete('/api/persons/:id', (req, res) => {
+app.delete('/api/persons/:id', (req, res, next) => {
     Person.findByIdAndRemove(req.params.id)
     .then(result => {
         res.status(204).end()
@@ -90,15 +90,9 @@ app.delete('/api/persons/:id', (req, res) => {
 })
 
 // LISÄÄMINEN
-app.post('/api/persons', (req, res) => {
+app.post('/api/persons', (req, res, next) => {
     
     const body = req.body
-    // 3.6 virheen käsittely
-    // if (!body.name || !body.number) {
-    //     return res.status(400).json({
-    //         error: 'nimi tai numero puuttuu'
-    //     })
-    // }
 
     const person = new Person({
         name: body.name,
@@ -113,7 +107,7 @@ app.post('/api/persons', (req, res) => {
     console.log(person)    
 })
 
-// 3.17 NUMERON PÄIVITTÄMINEN
+// PUHELINNUMERON PÄIVITTÄMINEN
 app.put('/api/persons/:id', (req, res, next) => {
     const body = req.body
     const person = {
@@ -132,11 +126,9 @@ app.put('/api/persons/:id', (req, res, next) => {
 const unknownEndpoint = (request, response) => {
     response.status(404).send({ error: 'unknown endpoint' })
 }
-
-// unknownendpoint middleware käyttöön
 app.use(unknownEndpoint)
 
-// 3.16 errorhandler middleware
+// ERRORHANDLER MIDDLEWARE
 const errorHandler = (error, request, response, next) => {
     console.error(error.message)  
     if (error.name === 'CastError' && error.kind == 'ObjectId') {
@@ -146,7 +138,6 @@ const errorHandler = (error, request, response, next) => {
     }
     next(error)
 }
-
 app.use(errorHandler)
 
 const PORT = process.env.PORT
