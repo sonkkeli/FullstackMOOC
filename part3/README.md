@@ -1,6 +1,5 @@
-## Excercises 3.12-3.22 in this repo
-Heroku link:    
+## Excercises 3.1-3.22
+Heroku link: https://puhelinmuistiomongodb.herokuapp.com/      
      
-## Excercises 3.1-3.11 can be found here:
-https://github.com/sonkkeli/puhelinluettelo-backend/    
-Heroku link: https://puhelinluetteloappi.herokuapp.com/    
+## Excercises 3.1-3.11 are in subfolder PELKKA BACKEND (ALKUPAAN TEHT):
+https://github.com/sonkkeli/FullstackMOOC/tree/master/part3/PELKKA%20BACKEND%20(ALKUPAAN%20TEHT)        
