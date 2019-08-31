@@ -16,9 +16,9 @@ part 3
     - puhelinluettelo (fullstack)     
 part 4    
     - bloglist-backend    
-    - puhelinmuistio
+    - puhelinmuistio     
 part 5    
-    - bloglist-frontend
+    - bloglist-frontend     
 part 6    
 part 7    
 part 8   
