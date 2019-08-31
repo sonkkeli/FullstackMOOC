@@ -15,16 +15,10 @@ part 3
     - puhelinluettelo (backend)    
     - puhelinluettelo (fullstack)     
 part 4    
+    - bloglist-backend    
+    - puhelinmuistio
 part 5    
+    - bloglist-frontend
 part 6    
 part 7    
-part 8    
-
-## Uuden react-apin luominen 
-Luodaan sovellus nimeltään [nimi] ja mennään sovelluksen 
-sisältämään hakemistoon:
-
-$ npx create-react-app [nimi]     
-$ cd [nimi]    
-Sovellus käynnistetään seuraavasti    
-$ npm start
+part 8   
