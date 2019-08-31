@@ -1,11 +1,11 @@
 ### Part 3
 
+## Heroku link    
+https://puhelinmuistiomongodb.herokuapp.com/
+
 ## Excercises 3.1-3.22    
 https://fullstackopen-2019.github.io/osa3
 
-## Heroku link    
-https://puhelinmuistiomongodb.herokuapp.com/
-       
 a Node.js ja Express     
 b Sovellus internetiin     
 c Tietojen tallettaminen MongoDB-tietokantaan     
