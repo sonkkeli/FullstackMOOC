@@ -1,6 +1,6 @@
 ### Part 1
 
-## Excercises 1.1-1.21  
+## Excercises 1.1-1.14  
 https://fullstackopen-2019.github.io/osa1
      
 a Reactin alkeet     
