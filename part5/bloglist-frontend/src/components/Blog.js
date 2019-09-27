@@ -23,13 +23,13 @@ const Blog = ({ blog, addLike, deleteBlog }) => {
         <span onClick={toggleVisibility}>{blog.title} by {blog.author}</span>
         {isBlogAddedByMe ? <button className="btn btn-info" onClick={deleteBlog} value={blog.id}>delete</button> : null}
       </p>
-      <div style={showWhenVisible}>
+      <div style={showWhenVisible} data-testid="blogs-toggleablepart">
         <p>
           <a href={`http://${blog.url}`}>{blog.url}</a>
         </p>
         <p>
           {blog.likes} likes
-          <button className="ml-3 btn btn-light" onClick={addLike} value={JSON.stringify(blog)}>
+          <button className="ml-3 btn btn-light" data-testid={`likebtn`} onClick={addLike} value={JSON.stringify(blog)}>
             {'<3 like'}
           </button>
         </p>
