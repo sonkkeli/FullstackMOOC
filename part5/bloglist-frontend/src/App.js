@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import './App.css'
 import loginService from './services/login'
 import blogService from './services/blogs'
 import Notification from './components/Notification'
@@ -9,14 +9,14 @@ import BlogForm from './components/BlogForm'
 import LoginForm from './components/LoginForm'
 
 const App = () => {
-  const [blogs, setBlogs] = useState([]) 
+  const [blogs, setBlogs] = useState([])
   const [newTitle, setNewTitle] = useState('')
   const [newAuthor, setNewAuthor] = useState('')
   const [newURL, setNewURL] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
-  const [username, setUsername] = useState('') 
-  const [password, setPassword] = useState('') 
-  const [user, setUser] = useState(null) 
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [user, setUser] = useState(null)
   const [loaded, setLoaded] = useState(false)
   const [createNewVisibility, setCreateNewVisibility] = useState(false)
 
@@ -41,10 +41,10 @@ const App = () => {
     try {
       const user = await loginService.login({
         username, password,
-      })  
+      })
       window.localStorage.setItem(
         'loggedBlogsUser', JSON.stringify(user)
-      ) 
+      )
       blogService.setToken(user.token)
       setUser(user)
       setUsername('')
@@ -78,7 +78,7 @@ const App = () => {
 
     blogService
       .create(blogObject)
-      .then(data => {
+      .then(() => {
         updateBlogs()
         setNewTitle('')
         setNewAuthor('')
@@ -115,18 +115,21 @@ const App = () => {
     blogService
       .getAll()
       .then(updatedBlogs => setBlogs(updatedBlogs))
-      .catch(error => createNotification('Updating blogs failed, try again'))
+      .catch(error => {
+        createNotification('Updating blogs failed, try again')
+        console.log(error)
+      })
   }
 
   const logout = (e) => {
     e.preventDefault()
     localStorage.removeItem('loggedBlogsUser')
-    window.location.reload()  
+    window.location.reload()
   }
 
   const deleteBlog = (e) => {
     e.preventDefault()
-    
+
     if (window.confirm('Are you sure you want to delete this blog?')){
       var id = e.target.value
       try {
@@ -136,55 +139,55 @@ const App = () => {
       } catch (error){
         createNotification('Removal failed')
       }
-    }    
+    }
   }
 
   if(loaded){
     return (
       <div>
         <nav className="navbar navbar-dark bg-dark justify-content-between">
-        <a className="text-light lead" href="/">Blogs App</a>
-          {user === null 
-            ? null 
+          <a className="text-light lead" href="/">Blogs App</a>
+          {user === null
+            ? null
             : <button onClick={logout} className="btn btn-light">logout</button>}
         </nav>
         <div className="container">
           <br/>
           <h1>Blogs App</h1>
-      
+
           <Notification message={errorMessage} />
-      
-          {user === null 
-            ? <LoginForm 
-                handleLogin={handleLogin} 
-                username={username}
-                setUsername={setUsername}
-                password={password}
-                setPassword={setPassword}
+
+          {user === null
+            ? <LoginForm
+              handleLogin={handleLogin}
+              username={username}
+              setUsername={setUsername}
+              password={password}
+              setPassword={setPassword}
             />
             : <div>
-                <p>{user.name} logged in</p>
-                <h2>Blogs</h2>
-                <BlogList 
-                  blogs={blogs}
-                  addLike={addLike}
-                  deleteBlog={deleteBlog}
-                />
-                <br/>              
-                <BlogForm addBlog={addBlog} 
-                  newTitle={newTitle} 
-                  handleTitleChange={handleTitleChange}
-                  newAuthor={newAuthor}
-                  handleAuthorChange={handleAuthorChange}
-                  newURL={newURL}
-                  handleURLChange={handleURLChange} 
-                  createNewVisibility={createNewVisibility}
-                  setCreateNewVisibility={setCreateNewVisibility}
-                />
-              </div>
+              <p>{user.name} logged in</p>
+              <h2>Blogs</h2>
+              <BlogList
+                blogs={blogs}
+                addLike={addLike}
+                deleteBlog={deleteBlog}
+              />
+              <br/>
+              <BlogForm addBlog={addBlog}
+                newTitle={newTitle}
+                handleTitleChange={handleTitleChange}
+                newAuthor={newAuthor}
+                handleAuthorChange={handleAuthorChange}
+                newURL={newURL}
+                handleURLChange={handleURLChange}
+                createNewVisibility={createNewVisibility}
+                setCreateNewVisibility={setCreateNewVisibility}
+              />
+            </div>
           }
-          <Footer />  
-        </div>        
+          <Footer />
+        </div>
       </div>
     )
   } else {
@@ -192,4 +195,4 @@ const App = () => {
   }
 }
 
-export default App;
+export default App

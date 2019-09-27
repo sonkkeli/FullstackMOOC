@@ -1,10 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const LoginForm = ({
-  handleLogin, 
-  username, 
-  setUsername, 
-  password, 
+  handleLogin,
+  username,
+  setUsername,
+  password,
   setPassword
 }) => {
   return (
@@ -16,7 +17,7 @@ const LoginForm = ({
           <div className="input-group-prepend">
             <span className="input-group-text" id="inputGroup-sizing-sm">username</span>
           </div>
-            <input className="form-control"
+          <input className="form-control"
             type="text"
             value={username}
             name="Username"
@@ -27,7 +28,7 @@ const LoginForm = ({
           <div className="input-group-prepend">
             <span className="input-group-text" id="inputGroup-sizing-sm">password</span>
           </div>
-            <input className="form-control"
+          <input className="form-control"
             type="password"
             value={password}
             name="Password"
@@ -35,9 +36,17 @@ const LoginForm = ({
           />
         </div>
         <button type="submit" className="btn btn-dark">login</button>
-      </form>     
-    </div> 
-  )  
+      </form>
+    </div>
+  )
+}
+
+LoginForm.propTypes = {
+  handleLogin: PropTypes.func.isRequired,
+  username: PropTypes.string.isRequired,
+  setUsername: PropTypes.func.isRequired,
+  password: PropTypes.string.isRequired,
+  setPassword: PropTypes.func.isRequired
 }
 
 export default LoginForm

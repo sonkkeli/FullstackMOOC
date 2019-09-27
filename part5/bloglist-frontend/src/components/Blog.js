@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
 const Blog = ({ blog, addLike, deleteBlog }) => {
   const [visible, setVisible] = useState(false)
@@ -29,7 +30,7 @@ const Blog = ({ blog, addLike, deleteBlog }) => {
         <p>
           {blog.likes} likes
           <button className="ml-3 btn btn-light" onClick={addLike} value={JSON.stringify(blog)}>
-            {"<3 like"}
+            {'<3 like'}
           </button>
         </p>
         <p>
@@ -38,6 +39,12 @@ const Blog = ({ blog, addLike, deleteBlog }) => {
       </div>
     </div>
   )
+}
+
+Blog.propTypes = {
+  blog: PropTypes.object.isRequired,
+  addLike: PropTypes.func.isRequired,
+  deleteBlog: PropTypes.func.isRequired
 }
 
 export default Blog
