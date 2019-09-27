@@ -9,10 +9,10 @@ const LoginForm = ({
   setPassword
 }) => {
   return (
-    <div>
+    <div >
       <h2>Login</h2>
       <br/>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} data-testid="loginform">
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="inputGroup-sizing-sm">username</span>
