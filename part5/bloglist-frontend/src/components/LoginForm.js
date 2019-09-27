@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import  { useField } from '../hooks/index'
 
 const LoginForm = ({
-  handleLogin,
-  username,
-  setUsername,
-  password,
-  setPassword
+  handleLogin
 }) => {
+
+  const username = useField('text')
+  const password = useField('text') 
+
   return (
     <div >
       <h2>Login</h2>
@@ -17,22 +18,18 @@ const LoginForm = ({
           <div className="input-group-prepend">
             <span className="input-group-text" id="inputGroup-sizing-sm">username</span>
           </div>
-          <input className="form-control"
-            type="text"
-            value={username}
+          <input className="form-control"            
             name="Username"
-            onChange={({ target }) => setUsername(target.value)}
+            {...username}
           />
         </div>
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="inputGroup-sizing-sm">password</span>
           </div>
-          <input className="form-control"
-            type="password"
-            value={password}
+          <input className="form-control"            
             name="Password"
-            onChange={({ target }) => setPassword(target.value)}
+            {...password}
           />
         </div>
         <button type="submit" className="btn btn-dark">login</button>
@@ -42,11 +39,7 @@ const LoginForm = ({
 }
 
 LoginForm.propTypes = {
-  handleLogin: PropTypes.func.isRequired,
-  username: PropTypes.string.isRequired,
-  setUsername: PropTypes.func.isRequired,
-  password: PropTypes.string.isRequired,
-  setPassword: PropTypes.func.isRequired
+  handleLogin: PropTypes.func.isRequired  
 }
 
 export default LoginForm

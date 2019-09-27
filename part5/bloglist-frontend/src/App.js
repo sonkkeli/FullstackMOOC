@@ -14,8 +14,6 @@ const App = () => {
   const [newAuthor, setNewAuthor] = useState('')
   const [newURL, setNewURL] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [loaded, setLoaded] = useState(false)
   const [createNewVisibility, setCreateNewVisibility] = useState(false)
@@ -38,17 +36,18 @@ const App = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault()
+    var username = event.target.Username.value
+    var password = event.target.Password.value
+    
     try {
       const user = await loginService.login({
-        username, password,
+        username, password
       })
       window.localStorage.setItem(
         'loggedBlogsUser', JSON.stringify(user)
       )
       blogService.setToken(user.token)
       setUser(user)
-      setUsername('')
-      setPassword('')
       createNotification(`Welcome ${user.name}`)
     } catch (exception) {
       createNotification('Incorrect username or password')
@@ -159,11 +158,7 @@ const App = () => {
 
           {user === null
             ? <LoginForm
-              handleLogin={handleLogin}
-              username={username}
-              setUsername={setUsername}
-              password={password}
-              setPassword={setPassword}
+              handleLogin={handleLogin}          
             />
             : <div>
               <p>{user.name} logged in</p>
