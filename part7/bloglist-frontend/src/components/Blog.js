@@ -13,7 +13,7 @@ const Blog = ({ blog, addLike, deleteBlog }) => {
   }
 
   return (
-    <div  className="container jumbotron shadow p-4 text-light bg-secondary rounded" data-testid="blog-item">
+    <div className="container jumbotron shadow p-4 text-light bg-secondary rounded" data-testid="blog-item" id="blog-item">
       <p className="d-flex justify-content-between">
         <Link to={`/blogs/${blog.id}`} style={{color: 'white'}}>{blog.title} by {blog.author}</Link>
         {isBlogAddedByMe ? <button className="btn btn-info" onClick={deleteBlog} value={blog.id}>delete</button> : null}

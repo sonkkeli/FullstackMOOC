@@ -18,7 +18,8 @@ const LoginForm = ({
           <div className="input-group-prepend">
             <span className="input-group-text" id="inputGroup-sizing-sm">username</span>
           </div>
-          <input className="form-control"            
+          <input className="form-control"
+            id='username'
             name="Username"
             {...username}
           />
@@ -29,6 +30,8 @@ const LoginForm = ({
           </div>
           <input className="form-control"            
             name="Password"
+            id='password'
+            type="password"
             {...password}
           />
         </div>

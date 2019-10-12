@@ -180,12 +180,6 @@ const App = () => {
   const userById = (id) => users.find(a => a.id === id)
   const blogById = (id) => blogs.find(a => a.id === id)
 
-  // const Main = () => {    
-  //   return (
-        
-  //   )
-  // }
-
   const Navbar = () => {
     return (
       <nav className="navbar navbar-dark bg-dark d-flex">

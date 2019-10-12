@@ -19,7 +19,7 @@ const BlogView = ({ signedInUser, blog, addLike, addComment, newComment, handleC
       <br/><br/>
       <p>
         {blog.likes} likes 
-        <button className="ml-3 btn btn-dark" data-testid={`likebtn`} onClick={addLike} value={JSON.stringify(blog)}>
+        <button className="ml-3 btn btn-dark" id="likebtn" data-testid="likebtn" onClick={addLike} value={JSON.stringify(blog)}>
           {'<3 like'}
         </button>
       </p>
@@ -33,9 +33,10 @@ const BlogView = ({ signedInUser, blog, addLike, addComment, newComment, handleC
             placeholder="Drop a comment"
             value={newComment}
             onChange={handleCommentChange}
+            id="commentinput"
           />
           <div className="input-group-append">
-            <button className="btn btn-outline-secondary" type="submit">Add</button>
+            <button id="addbutton" className="btn btn-outline-secondary" type="submit">Add</button>
           </div>
         </div>        
       </form>

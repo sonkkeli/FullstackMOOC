@@ -31,6 +31,7 @@ const BlogForm = ({
             <input className="form-control"
               value={newTitle}
               onChange={handleTitleChange}
+              id="title"
             />
           </div>
           <div className="input-group mb-3">
@@ -40,6 +41,7 @@ const BlogForm = ({
             <input className="form-control"
               value={newAuthor}
               onChange={handleAuthorChange}
+              id="author"
             />
           </div>
           <div className="input-group mb-3">
@@ -49,9 +51,10 @@ const BlogForm = ({
             <input className="form-control"
               value={newURL}
               onChange={handleURLChange}
+              id="url"
             />
           </div>
-          <button type="submit" className="btn btn-dark">create</button>
+          <button type="submit" className="btn btn-dark" id="createsubmit">create</button>
           <button className="ml-2 btn btn-dark" onClick={(e) => {
             e.preventDefault()
             setCreateNewVisibility(false)
