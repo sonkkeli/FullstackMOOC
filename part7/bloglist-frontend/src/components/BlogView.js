@@ -24,6 +24,10 @@ const BlogView = ({ signedInUser, blog, addLike }) => {
         </button>
       </p>
       <p>added by {blog.user.name}</p>
+      <h2>comments</h2>
+      {blog.comments.map(b => (
+        <p key={b.id}># {b.content}</p>
+      ))}
     </div>
   )
 }
