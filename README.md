@@ -1,5 +1,5 @@
-# FullstackMOOC
-Exercises of https://fullstackopen-2019.github.io/    
+# Full Stack Open 2019 - Deep Dive Into Modern Web Development
+Exercises of https://fullstackopen.com/    
 
 ## Folder structure:    
 fs_viikko1 (=part 0)    
@@ -19,6 +19,13 @@ part 4
     - puhelinmuistio     
 part 5    
     - bloglist-frontend     
-part 6    
+    - 5.21 custom-hooks     
+part 6 
+    - redux-anecdotes-master     
+    - unicafe-redux-master     
 part 7    
+    - bloglist-backend     
+    - bloglist-frontend     
+    - bloglist-frontend-with-webpack     
+    - routed-anecdotes-master     
 part 8   
