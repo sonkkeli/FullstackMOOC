@@ -22,6 +22,7 @@ const App = () => {
   const [newTitle, setNewTitle] = useState('')
   const [newAuthor, setNewAuthor] = useState('')
   const [newURL, setNewURL] = useState('')
+  const [newComment, setNewComment] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
   const [user, setUser] = useState(null)
   const [loaded, setLoaded] = useState(false)
@@ -77,11 +78,24 @@ const App = () => {
 
   const handleURLChange = (event) => setNewURL(event.target.value)
 
+  const handleCommentChange = (event) => setNewComment(event.target.value)
+
   const createNotification = (message) => {
     setErrorMessage(message)
     setTimeout(() => {
       setErrorMessage(null)
     }, 3000)
+  }
+
+  const updateBlogs = () => {
+    blogService
+      .getAll()
+      .then(updatedBlogs => setBlogs(updatedBlogs))
+      .then(window.location.href = window.location.href)
+      .catch(error => {
+        createNotification('Updating blogs failed, try again')
+        console.log(error)
+      })
   }
 
   const addBlog = (event) => {
@@ -127,13 +141,17 @@ const App = () => {
       })
   }
 
-  const updateBlogs = () => {
+  const addComment = (event, blogId) => {
+    event.preventDefault()
+    var commentObject = {
+      content: newComment
+    }
+
     blogService
-      .getAll()
-      .then(updatedBlogs => setBlogs(updatedBlogs))
-      .then(window.location.href = window.location.href)
+      .createComment(blogId, commentObject)
+      .then(updateBlogs())
       .catch(error => {
-        createNotification('Updating blogs failed, try again')
+        createNotification('Comment addition failed, try again')
         console.log(error)
       })
   }
@@ -167,8 +185,6 @@ const App = () => {
       <div>
         <div className="container">
           <br/>
-          
-
           {user === null
             ? <LoginForm
               handleLogin={handleLogin}          
@@ -228,11 +244,25 @@ const App = () => {
           />
           <Route exact 
             path="/users/:id" 
-            render={({ match }) => <UserView signedInUser={user} user={userById(match.params.id)}/>} 
+            render={({ match }) => 
+              <UserView 
+                signedInUser={user} 
+                user={userById(match.params.id)}
+              />
+            } 
           />
           <Route exact 
             path="/blogs/:id" 
-            render={({ match }) => <BlogView signedInUser={user} blog={blogById(match.params.id)} addLike={addLike}/>} 
+            render={({ match }) => 
+              <BlogView 
+                signedInUser={user} 
+                blog={blogById(match.params.id)} 
+                addLike={addLike} 
+                addComment={addComment} 
+                newComment={newComment} 
+                handleCommentChange={handleCommentChange}
+              />
+            } 
           />
           <Footer />
         </Router>

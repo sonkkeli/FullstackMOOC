@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const BlogView = ({ signedInUser, blog, addLike }) => {
+const BlogView = ({ signedInUser, blog, addLike, addComment, newComment, handleCommentChange }) => {
   if ( blog === undefined) { 
     return <p>Loading</p>
   }
@@ -25,6 +25,20 @@ const BlogView = ({ signedInUser, blog, addLike }) => {
       </p>
       <p>added by {blog.user.name}</p>
       <h2>comments</h2>
+      <form onSubmit={event => addComment(event, blog.id)}>
+        <div className="input-group mb-3">
+          <input 
+            type="text" 
+            className="form-control" 
+            placeholder="Drop a comment"
+            value={newComment}
+            onChange={handleCommentChange}
+          />
+          <div className="input-group-append">
+            <button className="btn btn-outline-secondary" type="submit">Add</button>
+          </div>
+        </div>        
+      </form>
       {blog.comments.map(b => (
         <p key={b.id}># {b.content}</p>
       ))}
