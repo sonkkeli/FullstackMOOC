@@ -180,40 +180,11 @@ const App = () => {
   const userById = (id) => users.find(a => a.id === id)
   const blogById = (id) => blogs.find(a => a.id === id)
 
-  const Main = () => {    
-    return (
-      <div>
-        <div className="container">
-          <br/>
-          {user === null
-            ? <LoginForm
-              handleLogin={handleLogin}          
-            />
-            : <div>
-              <h2>Blogs</h2>
-              <BlogList
-                blogs={blogs}
-                addLike={addLike}
-                deleteBlog={deleteBlog}
-              />
-              <br/>
-              <BlogForm addBlog={addBlog}
-                newTitle={newTitle}
-                handleTitleChange={handleTitleChange}
-                newAuthor={newAuthor}
-                handleAuthorChange={handleAuthorChange}
-                newURL={newURL}
-                handleURLChange={handleURLChange}
-                createNewVisibility={createNewVisibility}
-                setCreateNewVisibility={setCreateNewVisibility}
-              />
-            </div>
-          }
-          
-        </div>
-      </div>
-    )
-  }
+  // const Main = () => {    
+  //   return (
+        
+  //   )
+  // }
 
   const Navbar = () => {
     return (
@@ -236,7 +207,35 @@ const App = () => {
           <Navbar/>
           <Notification message={errorMessage} />
           <Route exact 
-            path="/" render={() => <Main />} 
+            path="/" render={() => (
+            <div className="container">
+              <br/>
+              {user === null
+                ? <LoginForm
+                  handleLogin={handleLogin}          
+                />
+                : <div>
+                  <h2>Blogs</h2>
+                  <BlogList
+                    blogs={blogs}
+                    addLike={addLike}
+                    deleteBlog={deleteBlog}
+                  />
+                  <br/>
+                  <BlogForm addBlog={addBlog}
+                    newTitle={newTitle}
+                    handleTitleChange={handleTitleChange}
+                    newAuthor={newAuthor}
+                    handleAuthorChange={handleAuthorChange}
+                    newURL={newURL}
+                    handleURLChange={handleURLChange}
+                    createNewVisibility={createNewVisibility}
+                    setCreateNewVisibility={setCreateNewVisibility}
+                  />
+                </div>
+              }
+            </div>
+            )} 
           />
           <Route exact 
             path="/users" 
