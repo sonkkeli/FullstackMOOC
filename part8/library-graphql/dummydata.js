@@ -82,4 +82,4 @@ let books = [
   },
 ]
 
-module.exports = [books,authors]
+module.exports = { books, authors }

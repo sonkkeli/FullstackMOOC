@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon library-backend.js",
     "test": "test"
   },
   "author": "sonkkeli",
@@ -11,5 +13,8 @@
   "dependencies": {
     "apollo-server": "^2.9.6",
     "graphql": "^14.5.8"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
   }
 }
