@@ -2,9 +2,13 @@ import React, { useState } from 'react'
 import Authors from './components/Authors'
 import Books from './components/Books'
 import NewBook from './components/NewBook'
+import { useQuery } from '@apollo/react-hooks'
+import { gql } from 'apollo-boost'
+
+
 
 const App = () => {
-  const [page, setPage] = useState('authors')
+  const [page, setPage] = useState('authors')  
 
   return (
     <div>

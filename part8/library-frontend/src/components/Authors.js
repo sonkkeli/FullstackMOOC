@@ -1,10 +1,25 @@
 import React, { useState } from 'react'
+import { useQuery } from '@apollo/react-hooks'
+import { gql } from 'apollo-boost'
+
+const ALL_AUTHORS = gql`
+{
+  allAuthors {
+    name
+    born
+    bookCount
+  }
+}
+`
 
 const Authors = (props) => {
+  const { data, loading, error } = useQuery(ALL_AUTHORS);
   if (!props.show) {
     return null
   }
-  const authors = []
+  if (loading) return <p>LOADING...</p>;
+  if (error) return <p>ERROR</p>;
+  const authors = data.allAuthors
 
   return (
     <div>
