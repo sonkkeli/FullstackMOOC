@@ -1,14 +1,9 @@
 import React from 'react'
 
 const Authors = (props) => {  
-  if (!props.show) {
-    return null
-  }
-
-  if (props.authors.loading){
-    return <p>loading</p>
-  }
-
+  if (!props.show) return null
+  if (props.authors.loading) return <p>loading</p>
+  console.log(props.authors.data)
   const authors = props.authors.data.allAuthors
 
   return (
