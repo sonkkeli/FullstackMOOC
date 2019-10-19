@@ -6,6 +6,7 @@ export const ALL_AUTHORS = gql`
     name
     born
     bookCount
+    id
   }
 }
 `
@@ -15,9 +16,22 @@ export const ALL_BOOKS = gql`
   allBooks {
     title
     published
-    author {
-      name
+    genres
+    id
+    author{
+      name      
     }
+  }
+}
+`
+
+export const FIND_AUTHOR = gql`
+query findAuthor( $name: String!){
+findAuthor( name: $name) {
+    name
+    born
+    id
+    bookCount
   }
 }
 `
@@ -34,8 +48,6 @@ mutation addBook( $title: String!, $author: String!, $published: Int!, $genres: 
     id
     author {
       name
-      born
-      id
     }
     published
     genres
