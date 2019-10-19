@@ -28,4 +28,6 @@ part 7
     - bloglist-frontend     
     - bloglist-frontend-with-webpack     
     - routed-anecdotes-master     
-part 8   
+part 8    
+    - library-graphql (backend)    
+    - library-frontend     
