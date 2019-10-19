@@ -7,17 +7,22 @@ import { useQuery, useMutation } from '@apollo/react-hooks'
 import {ADD_BOOK, ALL_BOOKS, ALL_AUTHORS, EDIT_AUTHOR} from './queries'
 
 const App = () => {
+  const [page, setPage] = useState('authors')
+  const [errorMessage, setErrorMessage] = useState('')
+  const createNotification = (message) => {
+    setErrorMessage(message)
+    setTimeout(() => {
+      setErrorMessage(null)
+    }, 3000)
+  }
+
   const [ addBook ] = useMutation(ADD_BOOK, {
-    // onError: handleError,
     refetchQueries: [{ query: ALL_BOOKS }, { query: ALL_AUTHORS }]
   })
 
   const [ editAuthor ] = useMutation(EDIT_AUTHOR, {
-    // onError: handleError,
     refetchQueries: [{ query: ALL_AUTHORS }]
   })
-
-  const [page, setPage] = useState('authors')  
 
   return (
     <div>
@@ -27,6 +32,8 @@ const App = () => {
         <button onClick={() => setPage('add')}>add book</button>
         <button onClick={() => setPage('edit')}>set born</button>
       </div>
+
+      <p style={{color: 'red', fontWeight: '600'}}>{errorMessage}</p>
 
       <Authors 
         authors={useQuery(ALL_AUTHORS)}
@@ -41,6 +48,7 @@ const App = () => {
       <NewBook 
         addBook={addBook}
         show={page === 'add'}
+        createNotification={createNotification}
       />
 
       <SetBirthYear

@@ -14,7 +14,19 @@ const NewBook = (props) => {
   const submit = async (e) => {
     e.preventDefault()
     console.log('add book...')
-    await props.addBook({ variables: { title, author, published, genres } })
+    try {
+      if (title && title.length >= 2 && author && author.length >= 4 && published && genres.lenght === 0 ) await props.addBook({ variables: { title, author, published, genres } })
+    } catch (error) {
+      console.log(error)
+      if (!title || !author || !published || genres.lenght === 0) {
+        props.createNotification('Adding book failed, fill all fields')
+      } else if (title.length < 2) {
+        props.createNotification('Adding book failed, title too short, min 2')
+      } else if (author.length < 4) {
+        props.createNotification('Adding book failed, author too short, min 4')
+      }
+    }
+    
     setTitle('')
     setPublished('')
     setAuhtor('')
