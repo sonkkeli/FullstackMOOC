@@ -76,19 +76,24 @@ const App = () => {
         <button onClick={() => setPage('edit')}>set born</button>
       </div>
 
-      <Authors authors={useQuery(ALL_AUTHORS)}
+      <Authors 
+        authors={useQuery(ALL_AUTHORS)}
         show={page === 'authors'}
       />
 
-      <Books books={useQuery(ALL_BOOKS)}
+      <Books 
+        books={useQuery(ALL_BOOKS)}
         show={page === 'books'}
       />
 
-      <NewBook addBook={addBook}
+      <NewBook 
+        addBook={addBook}
         show={page === 'add'}
       />
 
-      <SetBirthYear editAuthor={editAuthor}
+      <SetBirthYear
+        editAuthor={editAuthor}
+        authors={useQuery(ALL_AUTHORS)}
         show={page === 'edit'}
       />
 
