@@ -1,58 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Authors from './components/Authors'
 import Books from './components/Books'
 import NewBook from './components/NewBook'
 import SetBirthYear from './components/SetBirthYear'
 import { useQuery, useMutation } from '@apollo/react-hooks'
-import { gql } from 'apollo-boost'
-
-const ADD_BOOK = gql`
-mutation addBook( $title: String!, $author: String!, $published: Int!, $genres: [String!]! ) {
-  addBook(
-    title: $title,
-    author: $author,
-    published: $published,
-    genres: $genres
-  ) {
-    title
-    author
-    published
-    genres
-  }
-}
-`
-
-const ALL_AUTHORS = gql`
-{
-  allAuthors {
-    name
-    born
-    bookCount
-  }
-}
-`
-
-const ALL_BOOKS = gql`
-{
-  allBooks {
-    title
-    author
-    published
-  }
-}
-`
-const EDIT_AUTHOR = gql`
-mutation editAuthor( $name: String!, $born: Int! ) {
-  editAuthor(
-    name: $name,
-    setBornTo: $born
-  ) {
-    name
-    born
-    bookCount
-  }
-}
-`
+import {ADD_BOOK, ALL_BOOKS, ALL_AUTHORS, EDIT_AUTHOR} from './queries'
 
 const App = () => {
   const [ addBook ] = useMutation(ADD_BOOK, {
