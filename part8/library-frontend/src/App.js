@@ -5,7 +5,7 @@ import NewBook from './components/NewBook'
 import SetBirthYear from './components/SetBirthYear'
 import LoginForm from './components/LoginForm'
 import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks'
-import { ADD_BOOK, ALL_BOOKS, ALL_AUTHORS, EDIT_AUTHOR, LOGIN } from './queries'
+import { ADD_BOOK, ALL_BOOKS, ALL_AUTHORS, EDIT_AUTHOR, LOGIN, BOOKS_BY_GENRE } from './queries'
 
 const App = () => {
   const client = useApolloClient()
