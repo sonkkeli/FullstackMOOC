@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react'
 import { BOOKS_BY_GENRE } from '../queries'
 import { useApolloClient } from '@apollo/react-hooks'
