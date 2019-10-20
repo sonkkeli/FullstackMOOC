@@ -7,16 +7,11 @@ const LoginForm = (props) => {
 
   const submit = async (e) => {
     e.preventDefault()
-    console.log('login...')
-    try {
-      const res = await props.login({variables: { username, password }})
-      const token = res.data.login.value
-      props.saveToken(token)
-      localStorage.setItem('library-token', token)
-    } catch (error) {
-      props.createNotification('error when logging in')
-      console.log(error)
-    }    
+    console.log('login...')    
+    const res = await props.login({variables: { username, password }})
+    const token = res.data.login.value
+    props.saveToken(token)
+    localStorage.setItem('library-token', token)    
     setUsername('')
     setPassword('')
   }
