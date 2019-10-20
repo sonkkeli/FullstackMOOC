@@ -82,8 +82,7 @@ const App = () => {
         show={page === 'books'}
       />
 
-      <Recommend 
-        books={books}
+      <Recommend
         me={me}
         show={page === 'recommend'}
       />

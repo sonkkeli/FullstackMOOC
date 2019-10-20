@@ -1,12 +1,26 @@
 
-import React from 'react'
+import React, { useState } from 'react'
+import { BOOKS_BY_GENRE } from '../queries'
+import { useApolloClient } from '@apollo/react-hooks'
 
 const Recommend = (props) => {
+  const client = useApolloClient()
+  const [ myRecs, setMyRecs] = useState([])
+
   if (!props.show) return null
-  if (props.books.loading || props.me.loading) return <p>loading</p>  
+  if (props.me.loading) return <p>loading</p>  
   const myFave = props.me.data.me.favoriteGenre
-  const books = props.books.data.allBooks.filter(b=> b.genres.includes(myFave))
-  
+
+  const queryBooksOfMyFave = async () => {
+    const { data } = await client.query({
+      query: BOOKS_BY_GENRE,
+      variables: { genre: myFave }
+    })
+    setMyRecs(data.allBooks)
+  }
+ 
+  queryBooksOfMyFave()
+
   return (
     <div>
       <h2>recommended books</h2>
@@ -21,7 +35,7 @@ const Recommend = (props) => {
               published
             </th>
           </tr>
-          {books.map(a =>
+          {myRecs.map(a =>
             <tr key={a.title}>
               <td>{a.title}</td>
               <td>{a.author.name}</td>
