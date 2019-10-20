@@ -35,7 +35,7 @@ const Books = (props) => {
         filter by genre          
         <select onChange={(event)=> setGenre(event.target.value)} >
           <option key="235255" value=""></option>
-          {genres.map(g => <option key={g} value={g}>{g}</option>)}
+          {genres.map(g => <option key={Math.floor(Math.random()*1000)} value={g}>{g}</option>)}
         </select>
       </div>
       <table>

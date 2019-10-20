@@ -37,7 +37,7 @@ const App = () => {
 
   const [ addBook ] = useMutation(ADD_BOOK, {
     onError: createNotification,
-    refetchQueries: [{ query: ALL_BOOKS }, { query: ALL_AUTHORS }]
+    refetchQueries: [{ query: ALL_BOOKS }, { query: ALL_AUTHORS }, { query: BOOKS_BY_GENRE }]
   })
 
   const [ editAuthor ] = useMutation(EDIT_AUTHOR, {
