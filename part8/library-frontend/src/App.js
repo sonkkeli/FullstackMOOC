@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react'
 import Authors from './components/Authors'
 import Books from './components/Books'
 import NewBook from './components/NewBook'
+import Recommend from './components/Recommend'
 import SetBirthYear from './components/SetBirthYear'
 import LoginForm from './components/LoginForm'
 import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks'
-import { ADD_BOOK, ALL_BOOKS, ALL_AUTHORS, EDIT_AUTHOR, LOGIN, BOOKS_BY_GENRE } from './queries'
+import { ADD_BOOK, ALL_BOOKS, ALL_AUTHORS, EDIT_AUTHOR, LOGIN, BOOKS_BY_GENRE, ME } from './queries'
 
 const App = () => {
   const client = useApolloClient()
@@ -48,6 +49,9 @@ const App = () => {
     onError: createNotification
   })
 
+  const books = useQuery(ALL_BOOKS)
+  const me = useQuery(ME)
+
   return (
     <div>
       <div>
@@ -58,6 +62,7 @@ const App = () => {
           <span>
             <button onClick={() => setPage('add')}>add book</button>
             <button onClick={() => setPage('edit')}>set born</button>
+            <button onClick={() => setPage('recommend')}>recommend</button>
             <button onClick={logout}>logout</button>
           </span>
         )
@@ -73,8 +78,14 @@ const App = () => {
       />
 
       <Books 
-        books={useQuery(ALL_BOOKS)}
+        books={books}
         show={page === 'books'}
+      />
+
+      <Recommend 
+        books={books}
+        me={me}
+        show={page === 'recommend'}
       />
 
       <NewBook 

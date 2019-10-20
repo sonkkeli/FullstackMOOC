@@ -34,6 +34,7 @@ const typeDefs = gql`
 
     createUser(
       username: String!
+      favoriteGenre: String!
     ): User
 
     login(
