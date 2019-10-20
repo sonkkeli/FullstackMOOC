@@ -12,7 +12,12 @@ const SetBirthYear = (props) => {
   const submit = async (e) => {
     e.preventDefault()
     console.log('set birthyear...')
-    await props.editAuthor({variables: { name, born }})
+    try {
+      await props.editAuthor({variables: { name, born }})
+    } catch (error) {
+      console.log(error)
+    }
+    
     setName('')
     setBorn('')
   }

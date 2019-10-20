@@ -17,7 +17,7 @@ const NewBook = (props) => {
     try {
       if (title && title.length >= 2 && author && author.length >= 4 && published && genres.lenght === 0 ) await props.addBook({ variables: { title, author, published, genres } })
     } catch (error) {
-      console.log(error)
+      console.log(error.message, "erroriviesti")
       if (!title || !author || !published || genres.lenght === 0) {
         props.createNotification('Adding book failed, fill all fields')
       } else if (title.length < 2) {
