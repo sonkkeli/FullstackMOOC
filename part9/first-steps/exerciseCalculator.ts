@@ -8,7 +8,7 @@ interface TrainingData {
   explanation: string;
 } 
 
-const calculateExercises = (exercises: Array<number>, target: number): TrainingData => {
+export const calculateExercises = (exercises: Array<number>, target: number): TrainingData => {
   let trainings = 0;
   let hours = 0;
   for (let i = 0; i< exercises.length; i++){
