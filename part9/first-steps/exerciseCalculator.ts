@@ -9,26 +9,26 @@ interface TrainingData {
 } 
 
 const calculateExercises = (exercises: Array<number>, target: number): TrainingData => {
-  var trainings = 0;
-  var hours = 0;
-  for (var i = 0; i< exercises.length; i++){
+  let trainings = 0;
+  let hours = 0;
+  for (let i = 0; i< exercises.length; i++){
     if(exercises[i]){
-      hours += exercises[i]
-      trainings++
-    }    
+      hours += exercises[i];
+      trainings++;
+    }
   }
   
-  var average = hours / exercises.length
+  const average = hours / exercises.length;
+  const percentage = average / target;
 
-  var percentage = average / target
-  var rating = 1
-  var explanation = 'Oisit nyt edes yrittänyt...'
+  let rating = 1;
+  let explanation = 'Oisit nyt edes yrittänyt...';
   if ( percentage > 0.5 && percentage < 1) {
-    rating = 2
-    explanation = "Melkein, ens kerralla sit onnistuu..."
+    rating = 2;
+    explanation = "Melkein, ens kerralla sit onnistuu...";
   } else if (percentage >= 1) {
-    rating = 3
-    explanation = "Hienosti urheiltu!! Noin ne absit kasvaa."
+    rating = 3;
+    explanation = "Hienosti urheiltu!! Noin ne absit kasvaa.";
   }
 
   return {
@@ -39,8 +39,8 @@ const calculateExercises = (exercises: Array<number>, target: number): TrainingD
     isReached: average > target,
     rating: rating,
     explanation: explanation,
-  }
-}
+  };
+};
 
 interface Inputs {
   exercises: Array<number>;
@@ -48,13 +48,13 @@ interface Inputs {
 }
 
 const parseArgs = (args: Array<string>): Inputs => {
-  var exercises = []
-  for (var i = 2; i<args.length; i++){
+  const exercises = [];
+  for (let i = 2; i<args.length; i++){
     if( isNaN( Number( args[i] ) ) ) {
       throw new Error('Provided values were not numbers!');
     } else {
       if (i !== args.length-1){
-        exercises.push(Number(args[i]))
+        exercises.push(Number(args[i]));
       }      
     }
   }
@@ -62,12 +62,12 @@ const parseArgs = (args: Array<string>): Inputs => {
   return {
     exercises: exercises,
     target: Number(args[args.length-1])
-  }  
-}
+  };
+};
 
 try {
-  const { exercises, target } = parseArgs(process.argv)
-  console.log(calculateExercises(exercises, target))
+  const { exercises, target } = parseArgs(process.argv);
+  console.log(calculateExercises(exercises, target));
 } catch (e) {
   console.log('Error, something bad happened, message: ', e.message);
 }
