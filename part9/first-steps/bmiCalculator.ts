@@ -1,4 +1,4 @@
-const calculateBmi = (pituusCm: number, paino: number) => {
+const calculateBmi = (pituusCm: number, paino: number): string => {
   const pituusM = pituusCm / 100
   const bmi = (paino) / (pituusM * pituusM)
   // console.log(bmi)
@@ -22,8 +22,28 @@ const calculateBmi = (pituusCm: number, paino: number) => {
   }
 }
 
+interface InputsBMI {
+  pituusCm: number;
+  paino: number;
+}
+
+const parseArgsBMI = (args: Array<string>): InputsBMI => {
+  if (args.length < 4) throw new Error('Not enough arguments');
+  if (args.length > 4) throw new Error('Too many arguments');
+
+  if (!isNaN(Number(args[2])) && !isNaN(Number(args[3]))) {
+    return {
+      pituusCm: Number(args[2]),
+      paino: Number(args[3])
+    }
+  } else {
+    throw new Error('Provided values were not numbers!');
+  }
+}
+
 try {
-  console.log(calculateBmi(194, 70)) 
+  const { pituusCm, paino } = parseArgsBMI(process.argv)
+  console.log(calculateBmi(pituusCm, paino)) 
 } catch (e) {
   console.log('Error, something bad happened, message: ', e.message);
 }

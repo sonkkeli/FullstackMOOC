@@ -42,8 +42,32 @@ const calculateExercises = (exercises: Array<number>, target: number): TrainingD
   }
 }
 
+interface Inputs {
+  exercises: Array<number>;
+  target: number;
+}
+
+const parseArgs = (args: Array<string>): Inputs => {
+  var exercises = []
+  for (var i = 2; i<args.length; i++){
+    if( isNaN( Number( args[i] ) ) ) {
+      throw new Error('Provided values were not numbers!');
+    } else {
+      if (i !== args.length-1){
+        exercises.push(Number(args[i]))
+      }      
+    }
+  }
+  
+  return {
+    exercises: exercises,
+    target: Number(args[args.length-1])
+  }  
+}
+
 try {
-  console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 3],2))
+  const { exercises, target } = parseArgs(process.argv)
+  console.log(calculateExercises(exercises, target))
 } catch (e) {
   console.log('Error, something bad happened, message: ', e.message);
 }
