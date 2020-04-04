@@ -1,4 +1,4 @@
-const calculateBmi = (pituusCm: number, paino: number): string => {
+export const calculateBmi = (pituusCm: number, paino: number): string => {
   const pituusM = pituusCm / 100
   const bmi = (paino) / (pituusM * pituusM)
   // console.log(bmi)
