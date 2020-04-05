@@ -1,12 +1,13 @@
 import React from "react";
 import axios from "axios";
 import { Container, Header, Icon } from "semantic-ui-react";
-import { Patient, Gender, Entry } from "../types";
+import { Patient, Gender } from "../types";
+import EntryDetails from './EntryDetails'
 import { apiBaseUrl } from "../constants";
 import { useStateValue, selectPatient } from "../state";
 
 const PatientInfoPage: React.FC<{id:string}> = ({id}) => {
-  const [{ selected, diagnoses }, dispatch] = useStateValue();
+  const [{ selected }, dispatch] = useStateValue();
 
   React.useEffect(() => {
     const fetchPatientData = async () => {
@@ -35,18 +36,6 @@ const PatientInfoPage: React.FC<{id:string}> = ({id}) => {
     }
   }
 
-  const EntryComp: React.FC<{entry: Entry}> = ({ entry }) => {
-    return <React.Fragment>
-      <p>{entry.date} - {entry.description}</p>
-      { entry.diagnosisCodes 
-        ? entry.diagnosisCodes.map(d => {
-          return <div key={`code-${d}`}>- {d}: {diagnoses[d].name}</div>
-        }) 
-        : null
-      }
-      </React.Fragment>
-  }
-
   return selected ? (
     <div className="App">
       <Container>
@@ -56,7 +45,7 @@ const PatientInfoPage: React.FC<{id:string}> = ({id}) => {
           <p>SSN: {selected.ssn}</p>
           <p>Occupation: {selected.occupation}</p>
           <Header as="h3">Entries:</Header>
-          {selected.entries.map(e => <EntryComp key={`entry-${e.id}`} entry={e}/>)}
+          {selected.entries.map(e => <EntryDetails key={`entry-${e.id}`} entry={e}/>)}
         </React.Fragment>       
       </Container>
     </div>
