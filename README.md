@@ -1,4 +1,4 @@
-# Full Stack Open 2019 - Deep Dive Into Modern Web Development
+# Full Stack Open - Deep Dive Into Modern Web Development
 Parts 1-8: Exercises of https://fullstackopen-2019.github.io/    
 Part 9: Exercises of https://fullstackopen.com/en/part9/    
 
