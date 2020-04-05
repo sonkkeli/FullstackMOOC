@@ -24,17 +24,8 @@ const addEntry = ( entry: NewPatient ) => {
   return patient;
 };
 
-const findById = (id: string): NonSensitivePatient | undefined => {
+const findById = (id: string): Patient | undefined => {
   const entry = patients.find(d => d.id === id);
-  if (entry) {
-    return {
-      id:entry.id, 
-      name: entry.name, 
-      dateOfBirth: entry.dateOfBirth, 
-      gender: entry.gender, 
-      occupation: entry.occupation
-    };
-  }
   return entry;
 };
 
