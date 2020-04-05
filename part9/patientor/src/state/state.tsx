@@ -1,16 +1,16 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { Patient } from "../types";
+import { Patient, Entry } from "../types";
 
 import { Action } from "./reducer";
 
 export type State = {
   patients: { [id: string]: Patient };
-  selected: Patient | undefined;
+  selected: Patient | null;
 };
 
 const initialState: State = {
   patients: {},
-  selected: undefined
+  selected: null
 };
 
 export const StateContext = createContext<[State, React.Dispatch<Action>]>([
@@ -34,4 +34,49 @@ export const StateProvider: React.FC<StateProviderProps> = ({
     </StateContext.Provider>
   );
 };
+
 export const useStateValue = () => useContext(StateContext);
+
+/**
+ * Action creator function for setting patien list
+ * @param patientList 
+ */
+export const setPatientList = (patientList: Patient[]): Action => {
+  return {
+    type: "SET_PATIENT_LIST",
+    payload: patientList
+  }
+}
+
+/**
+ * Action creator function for adding patient
+ * @param patient 
+ */
+export const addPatient = (patient: Patient): Action => {
+  return {
+    type: "ADD_PATIENT",
+    payload: patient
+  }
+}
+
+/**
+ * Action creator function for selecting patient / opening patient details
+ * @param patientData 
+ */
+export const selectPatient = (patientData: Patient): Action => {
+  return {
+    type: 'SET_PATIENT',
+    payload: patientData
+  }
+}
+
+/**
+ * Action creator function for updating patient by adding new entry
+ * @param entryData 
+ */
+export const addEntry = (entryData: Entry): Action => {
+  return {
+    type: 'ADD_ENTRY',
+    payload: entryData
+  }
+}
