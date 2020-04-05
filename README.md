@@ -39,3 +39,9 @@ part 7
 part 8    
     - library-graphql (backend)    
     - library-frontend     
+
+part 9     
+    - first-steps (9b)         
+    - patientor-backend (9c)      
+    - patientor (frontend, this is copied from course provider)      
+    - course-info (9d)     
