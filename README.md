@@ -1,5 +1,6 @@
 # Full Stack Open 2019 - Deep Dive Into Modern Web Development
-Exercises of https://fullstackopen.com/    
+Parts 1-8: Exercises of https://fullstackopen-2019.github.io/    
+Part 9: Exercises of https://fullstackopen.com/en/part9/    
 
 ## Folder structure:    
 fs_viikko1 (=part 0)    
@@ -40,7 +41,7 @@ part 8
     - library-graphql (backend)    
     - library-frontend     
 
-part 9     
+part 9 (TypeScript)     
     - first-steps (9b)         
     - patientor-backend (9c)      
     - patientor (frontend, 9d)      
