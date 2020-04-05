@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Container, Header, Icon } from "semantic-ui-react";
-import { Patient, Gender } from "../types";
+import { Patient, Gender, Entry } from "../types";
 import { apiBaseUrl } from "../constants";
 import { useStateValue, selectPatient } from "../state";
 
@@ -43,7 +43,7 @@ const PatientInfoPage: React.FC<{id:string}> = ({id}) => {
           <p>Birth date: {selected.dateOfBirth}</p>
           <p>SSN: {selected.ssn}</p>
           <p>Occupation: {selected.occupation}</p>
-          <p>Entries: {selected.entries.map(e => <span>{e}</span>)}</p>
+          <p>Entries: {selected.entries.map(e => <span>{e.type}</span>)}</p>
         </React.Fragment>       
       </Container>
     </div>
