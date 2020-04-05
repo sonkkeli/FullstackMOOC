@@ -15,7 +15,7 @@ interface EntryBase {
   date: string;
   type: string;
   specialist: string;
-  dignosisCodes?: Array<Diagnose['code']>;
+  diagnosisCodes?: Array<Diagnose['code']>;
   description: string;
 }
 

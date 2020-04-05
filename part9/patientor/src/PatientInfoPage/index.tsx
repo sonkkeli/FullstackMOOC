@@ -35,6 +35,13 @@ const PatientInfoPage: React.FC<{id:string}> = ({id}) => {
     }
   }
 
+  const EntryComp: React.FC<{entry: Entry}> = ({ entry }) => {
+    return <React.Fragment>
+      <p>{entry.date} - {entry.description}</p>
+      {entry.diagnosisCodes ? entry.diagnosisCodes.map(d => <div key={`code-${d}`}>- {d} </div>) : null}
+      </React.Fragment>
+  }
+
   return selected ? (
     <div className="App">
       <Container>
@@ -43,7 +50,8 @@ const PatientInfoPage: React.FC<{id:string}> = ({id}) => {
           <p>Birth date: {selected.dateOfBirth}</p>
           <p>SSN: {selected.ssn}</p>
           <p>Occupation: {selected.occupation}</p>
-          <p>Entries: {selected.entries.map(e => <span>{e.type}</span>)}</p>
+          <Header as="h3">Entries:</Header>
+          {selected.entries.map(e => <EntryComp key={`entry-${e.id}`} entry={e}/>)}
         </React.Fragment>       
       </Container>
     </div>
