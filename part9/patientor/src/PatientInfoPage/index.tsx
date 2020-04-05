@@ -6,7 +6,7 @@ import { apiBaseUrl } from "../constants";
 import { useStateValue, selectPatient } from "../state";
 
 const PatientInfoPage: React.FC<{id:string}> = ({id}) => {
-  const [{ selected }, dispatch] = useStateValue();
+  const [{ selected, diagnoses }, dispatch] = useStateValue();
 
   React.useEffect(() => {
     const fetchPatientData = async () => {
@@ -21,7 +21,7 @@ const PatientInfoPage: React.FC<{id:string}> = ({id}) => {
     };
     if(!selected || (selected && selected.id !== id)){
       fetchPatientData();
-    }    
+    }
   }, [dispatch]);
 
   const chooseIcon = ( gender: Gender ) => {
@@ -38,7 +38,12 @@ const PatientInfoPage: React.FC<{id:string}> = ({id}) => {
   const EntryComp: React.FC<{entry: Entry}> = ({ entry }) => {
     return <React.Fragment>
       <p>{entry.date} - {entry.description}</p>
-      {entry.diagnosisCodes ? entry.diagnosisCodes.map(d => <div key={`code-${d}`}>- {d} </div>) : null}
+      { entry.diagnosisCodes 
+        ? entry.diagnosisCodes.map(d => {
+          return <div key={`code-${d}`}>- {d}: {diagnoses[d].name}</div>
+        }) 
+        : null
+      }
       </React.Fragment>
   }
 

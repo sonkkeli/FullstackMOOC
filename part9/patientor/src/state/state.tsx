@@ -1,15 +1,17 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { Patient, Entry } from "../types";
+import { Patient, Entry, Diagnose } from "../types";
 
 import { Action } from "./reducer";
 
 export type State = {
   patients: { [id: string]: Patient };
+  diagnoses: { [id: string]: Diagnose };
   selected: Patient | null;
 };
 
 const initialState: State = {
   patients: {},
+  diagnoses: {},
   selected: null
 };
 
@@ -38,13 +40,24 @@ export const StateProvider: React.FC<StateProviderProps> = ({
 export const useStateValue = () => useContext(StateContext);
 
 /**
- * Action creator function for setting patien list
+ * Action creator function for setting patient list
  * @param patientList 
  */
 export const setPatientList = (patientList: Patient[]): Action => {
   return {
     type: "SET_PATIENT_LIST",
     payload: patientList
+  }
+}
+
+/**
+ * Action creator function for setting diagnoses list
+ * @param diagnoseList 
+ */
+export const setDiagnoseList = (diagnoseList: Diagnose[]): Action => {
+  return {
+    type: "SET_DIAGNOSE_LIST",
+    payload: diagnoseList
   }
 }
 
