@@ -43,5 +43,5 @@ part 8
 part 9     
     - first-steps (9b)         
     - patientor-backend (9c)      
-    - patientor (frontend, this is copied from course provider)      
+    - patientor (frontend, 9d)      
     - course-info (9d)     
