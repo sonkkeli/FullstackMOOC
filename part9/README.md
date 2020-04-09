@@ -1,6 +1,6 @@
 ### Part 9
 
-## Excercises 9.1-     
+## Excercises 9.1-9.24     
 https://fullstackopen.com/en/part9     
 
 a Background and introduction     
