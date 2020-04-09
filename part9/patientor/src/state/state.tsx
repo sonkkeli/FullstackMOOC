@@ -87,9 +87,9 @@ export const selectPatient = (patientData: Patient): Action => {
  * Action creator function for updating patient by adding new entry
  * @param entryData 
  */
-export const addEntry = (entryData: Entry): Action => {
+export const addEntry = (entryData: Entry, id: string): Action => {
   return {
     type: 'ADD_ENTRY',
-    payload: entryData
+    payload: { patientId: id, entry: entryData }
   }
 }

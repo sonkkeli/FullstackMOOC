@@ -12,10 +12,10 @@ const EntryDetails: React.FC<{entry: Entry}> = ({ entry }) => {
       <React.Fragment>
         <Header as="h3">{entry.date} <Icon name={iconName}></Icon></Header>
         <p>{entry.description}</p>
-        { entry.diagnosisCodes 
+        { entry.diagnosisCodes && entry.diagnosisCodes.length > 0 
           ? entry.diagnosisCodes.map(d => {
             return <div key={`code-${d}`}>- {d}: {diagnoses[d].name}</div>
-          }) 
+          })
           : null
         }
       </React.Fragment>

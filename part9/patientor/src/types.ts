@@ -10,6 +10,19 @@ export enum Gender {
   Other = "other"
 }
 
+export enum Type {
+  HealthCheck = "HealthCheck",
+  OccupationalHealthcare = "OccupationalHealthcare",
+  Hospital = "Hospital"
+}
+
+export enum HealthCheckRating {
+  Healthy = 0,
+  LowRisk = 1,
+  HighRisk = 2,
+  CriticalRisk = 3
+}
+
 export interface Diagnose {
   code: string;
   name: string;
@@ -45,13 +58,6 @@ interface Hospital extends EntryBase {
   discharge?: Discharge;
 }
 
-export enum HealthCheckRating {
-  "Healthy" = 0,
-  "LowRisk" = 1,
-  "HighRisk" = 2,
-  "CriticalRisk" = 3
-}
-
 interface HealthCheck extends EntryBase {
   type: 'HealthCheck';
   healthCheckRating: HealthCheckRating;
@@ -61,6 +67,11 @@ export type Entry =
   | OccupationalHealthcare 
   | Hospital 
   | HealthCheck;
+
+export interface EntryInput {
+  patientId: string;
+  entry: Entry;
+}
 
 export interface Patient {
   id: string;

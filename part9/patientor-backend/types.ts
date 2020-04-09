@@ -40,15 +40,15 @@ interface Hospital extends EntryBase {
 }
 
 export enum HealthCheckRating {
-  "Healthy" = 0,
-  "LowRisk" = 1,
-  "HighRisk" = 2,
-  "CriticalRisk" = 3
+  Healthy = 0,
+  LowRisk = 1,
+  HighRisk = 2,
+  CriticalRisk = 3
 }
 
-interface HealthCheck extends EntryBase {
+export interface HealthCheck extends EntryBase {
   type: 'HealthCheck';
-  healthCheckRating: HealthCheckRating;
+  healthCheckRating?: HealthCheckRating;
 }
 
 export type Entry = 
@@ -68,4 +68,4 @@ export interface Patient {
 
 export type NewPatient = Omit<Patient,'id'>;
 
-export type NonSensitivePatient = Omit<Patient, 'ssn'|'entries'>;
+export type NonSensitivePatient = Omit<Patient, 'ssn'>;
